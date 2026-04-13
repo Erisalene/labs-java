@@ -7,12 +7,19 @@ public class Employee {
     private String position;
     private double salary;
     private int experience;
+    private static int totalCount = 0;
+    private Position position;
 
     public Employee(String name, String position, double salary, int experience) {
         setName(name);
         setPosition(position);
         setSalary(salary);
         setExperience(experience);
+        this.position = position;
+        totalCount++;
+    }
+    public static int getTotalCount() {
+        return totalCount;
     }
 
     public String getName() {
