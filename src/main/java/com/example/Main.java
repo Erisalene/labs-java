@@ -23,14 +23,11 @@ public class Main {
                 if (choice.equals("1")) {
                     System.out.print("Ім'я: ");
                     String n = sc.nextLine();
-                    String n = sc.nextLine();
                     System.out.print("Посада (DEVELOPER, MANAGER, HR, QA): ");
                     Position p = Position.valueOf(sc.nextLine().toUpperCase());
                     System.out.print("Зарплата: ");
                     double s = Double.parseDouble(sc.nextLine());
-                    double s = Double.parseDouble(sc.nextLine());
                     System.out.print("Стаж: ");
-                    int e = Integer.parseInt(sc.nextLine());
                     int e = Integer.parseInt(sc.nextLine());
                     list.add(new Employee(n, p, s, e));
                     System.out.println("Співробітника додано успішно!");
@@ -67,8 +64,8 @@ public class Main {
     private static void printHeader() {
         System.out.println("=========================================");
         System.out.println("  Лабораторна робота №6");
-        System.out.println("  Тема: Статичні члени та Агрегація");
-        System.out.println("  Виконав: [Ваше Прізвище]");
+        System.out.println("  Тема: Класи, статичні члени, агрегація, перерахування (enum)");
+        System.out.println("  Виконав: Давиденко Федір");
         System.out.println("=========================================");
     }
 }
