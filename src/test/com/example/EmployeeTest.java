@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmployeeTest {
     @Test
     void testInvalidSalary() {
-        Employee emp = new Employee("Ivan", "Dev", 1000, 5);
+        Employee emp = new Employee("Ivan",Position.DEVELOPER, 1000, 5);
         assertThrows(IllegalArgumentException.class, () -> emp.setSalary(-500));
     }
 

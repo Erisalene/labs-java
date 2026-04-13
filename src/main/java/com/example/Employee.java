@@ -10,12 +10,14 @@ public class Employee {
     private static int totalCount = 0;
     private Position position;
 
-    public Employee(String name, String position, double salary, int experience) {
-        setName(name);
-        setPosition(position);
-        setSalary(salary);
-        setExperience(experience);
-        this.position = position;
+    public Employee(Employee other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Неможливо скопіювати порожній об'єкт");
+        }
+        this.name = other.name;
+        this.position = other.position;
+        this.salary = other.salary;
+        this.experience = other.experience;
         totalCount++;
     }
     public static int getTotalCount() {
