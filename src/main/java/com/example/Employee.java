@@ -8,23 +8,43 @@ public class Employee {
     private double salary;
     private int experience;
     public Employee(String name, String position, double salary, int experience) {
-        this.name = name;
-        this.position = position;
-        this.salary = salary;
-        this.experience = experience;
+        setName(name);
+        setPosition(position);
+        setSalary(salary);
+        setExperience(experience);
     }
 
     public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Ім'я не може бути порожнім");
+        }
+        this.name = name;
+    }
 
     public String getPosition() { return position; }
-    public void setPosition(String position) { this.position = position; }
+    public void setPosition(String position) {
+        if (position == null || position.trim().isEmpty()) {
+            throw new IllegalArgumentException("Посада не може бути порожньою");
+        }
+        this.position = position;
+    }
 
     public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
+    public void setSalary(double salary) {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Зарплата не може бути від'ємною");
+        }
+        this.salary = salary;
+    }
 
     public int getExperience() { return experience; }
-    public void setExperience(int experience) { this.experience = experience; }
+    public void setExperience(int experience) {
+        if (experience < 0 || experience > 50) {
+            throw new IllegalArgumentException("Стаж повинен бути в межах від 0 до 50 років");
+        }
+        this.experience = experience;
+    }
 
     @Override
     public String toString() {
@@ -37,12 +57,13 @@ public class Employee {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return Double.compare(employee.salary, salary) == 0 &&
+                experience == employee.experience &&
                 Objects.equals(name, employee.name) &&
                 Objects.equals(position, employee.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position, salary);
+
+        return Objects.hash(name, position, salary, experience);
     }
-}
