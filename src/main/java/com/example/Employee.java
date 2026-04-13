@@ -6,10 +6,12 @@ public class Employee {
     private String name;
     private String position;
     private double salary;
-    public Employee(String name, String position, double salary) {
+    private int experience;
+    public Employee(String name, String position, double salary, int experience) {
         this.name = name;
         this.position = position;
         this.salary = salary;
+        this.experience = experience;
     }
 
     public String getName() { return name; }
@@ -21,9 +23,12 @@ public class Employee {
     public double getSalary() { return salary; }
     public void setSalary(double salary) { this.salary = salary; }
 
+    public int getExperience() { return experience; }
+    public void setExperience(int experience) { this.experience = experience; }
+
     @Override
     public String toString() {
-        return "Employee{" + "name='" + name + '\'' + ", position='" + position + '\'' + ", salary=" + salary + '}';
+        return String.format("Employee[Name: %s, Pos: %s, Sal: %.2f, Exp: %d]", name, position, salary, experience);
     }
 
     @Override
