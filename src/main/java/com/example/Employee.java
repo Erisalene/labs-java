@@ -4,11 +4,18 @@ import java.util.Objects;
 
 public class Employee {
     private String name;
-    private String position;
     private double salary;
     private int experience;
     private static int totalCount = 0;
     private Position position;
+
+    public Employee(String name, Position position, double salary, int experience) {
+        setName(name);
+        this.position = position;
+        setSalary(salary);
+        setExperience(experience);
+        totalCount++;
+    }
 
     public Employee(Employee other) {
         if (other == null) {
@@ -35,12 +42,12 @@ public class Employee {
         this.name = name;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
-        if (position == null || position.trim().isEmpty()) {
+    public void setPosition(Position position) {
+        if (position == null) {
             throw new IllegalArgumentException("Посада не може бути порожньою");
         }
         this.position = position;

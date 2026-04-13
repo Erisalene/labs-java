@@ -11,6 +11,6 @@ public class EmployeeTest {
 
     @Test
     void testEmptyNameConstructor() {
-        assertThrows(IllegalArgumentException.class, () -> new Employee("", "Dev", 1000, 5));
+        assertThrows(IllegalArgumentException.class, () -> new Employee("", Position.DEVELOPER, 1000, 5));
     }
 }
