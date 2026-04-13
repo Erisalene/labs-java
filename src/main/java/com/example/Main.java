@@ -17,7 +17,7 @@ public class Main {
             System.out.println("4. Вихід");
             System.out.print("Вибір: ");
             String choice = sc.nextLine();
-            if (choice.equals("3")) break;
+            if (choice.equals("4")) break;
 
             try {
                 if (choice.equals("1")) {
