@@ -7,6 +7,7 @@ public class Employee {
     private String position;
     private double salary;
     private int experience;
+
     public Employee(String name, String position, double salary, int experience) {
         setName(name);
         setPosition(position);
@@ -14,7 +15,10 @@ public class Employee {
         setExperience(experience);
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Ім'я не може бути порожнім");
@@ -22,7 +26,10 @@ public class Employee {
         this.name = name;
     }
 
-    public String getPosition() { return position; }
+    public String getPosition() {
+        return position;
+    }
+
     public void setPosition(String position) {
         if (position == null || position.trim().isEmpty()) {
             throw new IllegalArgumentException("Посада не може бути порожньою");
@@ -30,7 +37,10 @@ public class Employee {
         this.position = position;
     }
 
-    public double getSalary() { return salary; }
+    public double getSalary() {
+        return salary;
+    }
+
     public void setSalary(double salary) {
         if (salary < 0) {
             throw new IllegalArgumentException("Зарплата не може бути від'ємною");
@@ -38,7 +48,10 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getExperience() { return experience; }
+    public int getExperience() {
+        return experience;
+    }
+
     public void setExperience(int experience) {
         if (experience < 0 || experience > 50) {
             throw new IllegalArgumentException("Стаж повинен бути в межах від 0 до 50 років");
@@ -67,3 +80,4 @@ public class Employee {
 
         return Objects.hash(name, position, salary, experience);
     }
+}
