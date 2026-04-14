@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    private static ArrayList<Employee> list = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         printHeader();
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Employee> list = new ArrayList<>();
 
         while (true) {
-            System.out.println("\n--- МЕНЮ ---");
-            System.out.println("1. Додати звичайного співробітника");
-            System.out.println("2. Додати контрактного співробітника");
-            System.out.println("3. Додати повного співробітника");
-            System.out.println("4. Вивести всіх");
-            System.out.println("5. Вихід");
+            System.out.println("\n===== ГОЛОВНЕ МЕНЮ (Лаб №8) =====");
+            System.out.println("1. Добавити співробітника");
+            System.out.println("2. Вивести інформацію про всі об’єкти");
+            System.out.println("3. Завершити роботу");
             System.out.print("Вибір: ");
             String choice = sc.nextLine();
             if (choice.equals("5")) break;
