@@ -11,16 +11,16 @@ public class Main {
 
         while (true) {
             System.out.println("\n--- МЕНЮ ---");
-            System.out.println("1. Додати співробітника");
-            System.out.println("2. Вивести всіх та статистику");
-            System.out.println("3. Тест конструктора копіювання");
-            System.out.println("4. Вихід");
+            System.out.println("1. Додати звичайного співробітника");
+            System.out.println("2. Додати контрактного співробітника");
+            System.out.println("3. Додати повного співробітника");
+            System.out.println("4. Вивести всіх");
+            System.out.println("5. Вихід");
             System.out.print("Вибір: ");
             String choice = sc.nextLine();
-            if (choice.equals("4")) break;
+            if (choice.equals("5")) break;
 
             try {
-                if (choice.equals("1")) {
                     System.out.print("Ім'я: ");
                     String n = sc.nextLine();
                     System.out.print("Посада (DEVELOPER, MANAGER, HR, QA): ");
@@ -31,23 +31,29 @@ public class Main {
                     int e = Integer.parseInt(sc.nextLine());
                     list.add(new Employee(n, p, s, e));
                     System.out.println("Співробітника додано успішно!");
+                if (choice.equals("1")) {
+                    list.add(new Employee(n, p, s, e));
+                    System.out.println("Звичайного співробітника додано!");
+
                 } else if (choice.equals("2")) {
+                    System.out.print("Тривалість контракту (місяців): ");
+                    int duration = Integer.parseInt(sc.nextLine());
+
+                    list.add(new ContractEmployee(n, p, s, e, duration));
+                    System.out.println("Контрактного співробітника додано!");
+
+                } else if (choice.equals("3")) {
+                    System.out.print("Бонус: ");
+                    double bonus = Double.parseDouble(sc.nextLine());
+
+                    list.add(new FullTimeEmployee(n, p, s, e, bonus));
+                    System.out.println("Штатного співробітника додано!");
+                }
+
+                else if (choice.equals("4")) {
                     System.out.println("\nСписок співробітників:");
                     for (Employee emp : list) {
                         System.out.println(emp);
-                    }
-
-
-
-                } else if (choice.equals("3")) {
-
-                    if (list.isEmpty()) {
-                        System.out.println("Спочатку додайте хоча б одного співробітника!");
-                    } else {
-                        Employee original = list.get(0);
-                        Employee copy = new Employee(original);
-                        System.out.println("Оригінал: " + original);
-                        System.out.println("Копія створена: " + copy);
                     }
                 }
             } catch (NumberFormatException ex) {
@@ -62,7 +68,7 @@ public class Main {
 
     private static void printHeader() {
         System.out.println("=========================================");
-        System.out.println("  Лабораторна робота №6");
+        System.out.println("  Лабораторна робота №7");
         System.out.println("  Тема: Класи, статичні члени, агрегація, перерахування (enum)");
         System.out.println("  Виконав: Давиденко Федір");
         System.out.println("=========================================");
