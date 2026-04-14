@@ -43,16 +43,19 @@ public class Main {
 
                     if (choice.equals("1")) {
                         list.add(new Employee(n, p, s, e));
+                        System.out.println("Звичайного співробітника додано!");
                     }
                     else if (choice.equals("2")) {
                         System.out.print("Тривалість контракту: ");
                         int d = Integer.parseInt(sc.nextLine());
                         list.add(new ContractEmployee(n, p, s, e, d));
+                        System.out.println("Контрактного співробітника додано!");
                     }
                     else if (choice.equals("3")) {
                         System.out.print("Бонус: ");
                         double b = Double.parseDouble(sc.nextLine());
                         list.add(new FullTimeEmployee(n, p, s, e, b));
+                        System.out.println("Штатного співробітника додано!");
                     }
                 }
             } catch (NumberFormatException ex) {
