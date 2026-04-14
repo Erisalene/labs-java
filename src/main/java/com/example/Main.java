@@ -37,7 +37,7 @@ public class Main {
                         System.out.println(emp);
                     }
 
-                    System.out.println("\nВсього створено об'єктів у системі: " + Employee.getTotalCount());
+
 
                 } else if (choice.equals("3")) {
 
@@ -48,7 +48,6 @@ public class Main {
                         Employee copy = new Employee(original);
                         System.out.println("Оригінал: " + original);
                         System.out.println("Копія створена: " + copy);
-                        System.out.println("Кількість об'єктів зросла до: " + Employee.getTotalCount());
                     }
                 }
             } catch (NumberFormatException ex) {

@@ -3,18 +3,16 @@ package com.example;
 import java.util.Objects;
 
 public class Employee {
-    private String name;
-    private double salary;
-    private int experience;
-    private static int totalCount = 0;
-    private Position position;
+    protected String name;
+    protected double salary;
+    protected int experience;
+    protected Position position;
 
     public Employee(String name, Position position, double salary, int experience) {
         setName(name);
         this.position = position;
         setSalary(salary);
         setExperience(experience);
-        totalCount++;
     }
 
     public Employee(Employee other) {
@@ -25,10 +23,6 @@ public class Employee {
         this.position = other.position;
         this.salary = other.salary;
         this.experience = other.experience;
-        totalCount++;
-    }
-    public static int getTotalCount() {
-        return totalCount;
     }
 
     public String getName() {
