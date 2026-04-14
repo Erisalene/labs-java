@@ -21,39 +21,38 @@ public class Main {
             if (choice.equals("5")) break;
 
             try {
-                    System.out.print("Ім'я: ");
-                    String n = sc.nextLine();
-                    System.out.print("Посада (DEVELOPER, MANAGER, HR, QA): ");
-                    Position p = Position.valueOf(sc.nextLine().toUpperCase());
-                    System.out.print("Зарплата: ");
-                    double s = Double.parseDouble(sc.nextLine());
-                    System.out.print("Стаж: ");
-                    int e = Integer.parseInt(sc.nextLine());
-                    list.add(new Employee(n, p, s, e));
-                    System.out.println("Співробітника додано успішно!");
-                if (choice.equals("1")) {
-                    list.add(new Employee(n, p, s, e));
-                    System.out.println("Звичайного співробітника додано!");
-
-                } else if (choice.equals("2")) {
-                    System.out.print("Тривалість контракту (місяців): ");
-                    int duration = Integer.parseInt(sc.nextLine());
-
-                    list.add(new ContractEmployee(n, p, s, e, duration));
-                    System.out.println("Контрактного співробітника додано!");
-
-                } else if (choice.equals("3")) {
-                    System.out.print("Бонус: ");
-                    double bonus = Double.parseDouble(sc.nextLine());
-
-                    list.add(new FullTimeEmployee(n, p, s, e, bonus));
-                    System.out.println("Штатного співробітника додано!");
-                }
-
-                else if (choice.equals("4")) {
+                if (choice.equals("4")) {
                     System.out.println("\nСписок співробітників:");
                     for (Employee emp : list) {
                         System.out.println(emp);
+                    }
+                }
+                else {
+
+                    System.out.print("Ім'я: ");
+                    String n = sc.nextLine();
+
+                    System.out.print("Посада (DEVELOPER, MANAGER, HR, QA): ");
+                    Position p = Position.valueOf(sc.nextLine().toUpperCase());
+
+                    System.out.print("Зарплата: ");
+                    double s = Double.parseDouble(sc.nextLine());
+
+                    System.out.print("Стаж: ");
+                    int e = Integer.parseInt(sc.nextLine());
+
+                    if (choice.equals("1")) {
+                        list.add(new Employee(n, p, s, e));
+                    }
+                    else if (choice.equals("2")) {
+                        System.out.print("Тривалість контракту: ");
+                        int d = Integer.parseInt(sc.nextLine());
+                        list.add(new ContractEmployee(n, p, s, e, d));
+                    }
+                    else if (choice.equals("3")) {
+                        System.out.print("Бонус: ");
+                        double b = Double.parseDouble(sc.nextLine());
+                        list.add(new FullTimeEmployee(n, p, s, e, b));
                     }
                 }
             } catch (NumberFormatException ex) {
@@ -69,7 +68,7 @@ public class Main {
     private static void printHeader() {
         System.out.println("=========================================");
         System.out.println("  Лабораторна робота №7");
-        System.out.println("  Тема: Класи, статичні члени, агрегація, перерахування (enum)");
+        System.out.println("  Тема: Наслідування, поліморфізм, колекції (ArrayList) + продовження роботи з GitHub (нова гілка)");
         System.out.println("  Виконав: Давиденко Федір");
         System.out.println("=========================================");
     }
