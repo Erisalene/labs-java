@@ -8,7 +8,9 @@ public class ContractEmployee extends Employee {
         super(name, position, salary, experience); 
         this.contractDuration = contractDuration;
     }
-
+    public int getContractDuration() {
+        return contractDuration;
+    }
     @Override
     public String toString() {
         return "ContractEmployee: " + name +

@@ -7,7 +7,9 @@ public class InternEmployee extends Employee {
         super(name, position, salary, experience);
         this.mentorName = mentorName;
     }
-
+    public String getMentorName() {
+        return mentorName;
+    }
     @Override
     public String toString() {
         return "InternEmployee: " + name + ", Mentor: " + mentorName + ", Stipend: " + salary;

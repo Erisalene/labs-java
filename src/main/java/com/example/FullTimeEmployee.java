@@ -8,7 +8,9 @@ public class FullTimeEmployee extends Employee {
         super(name, position, salary, experience);
         this.bonus = bonus;
     }
-
+    public double getBonus() {
+        return bonus;
+    }
     @Override
     public String toString() {
         return "FullTimeEmployee: " + name +

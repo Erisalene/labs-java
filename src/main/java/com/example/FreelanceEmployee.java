@@ -7,7 +7,9 @@ public class FreelanceEmployee extends Employee {
         super(name, position, salary, experience); // salary тут может быть как базовый фикс
         this.hourlyRate = hourlyRate;
     }
-
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
     @Override
     public String toString() {
         return "FreelanceEmployee: " + name + ", Rate: " + hourlyRate + "/hr";
