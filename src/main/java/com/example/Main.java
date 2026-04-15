@@ -1,16 +1,21 @@
 package com.example;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
+
 
 public class Main {
     private static ArrayList<Employee> list = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-    private static final String FILE_NAME = "input.txt";
+    private static final String FILE_NAME = "input.json";
 
     public static void main(String[] args) {
-        loadFromFile();
+        loadFromJson();
         printHeader();
 
         while (true) {
@@ -21,7 +26,7 @@ public class Main {
             System.out.print("Вибір: ");
             String choice = sc.nextLine();
             if (choice.equals("3")) {
-                saveToFile();
+                saveToJson();
                 break;
             }
             try {
@@ -38,78 +43,35 @@ public class Main {
         }
     }
 
-    private static void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
-            for (Employee e : list) {
-                String type = e.getClass().getSimpleName();
-                StringBuilder sb = new StringBuilder();
-                sb.append(type).append(";")
-                        .append(e.getName()).append(";")
-                        .append(e.getPosition()).append(";")
-                        .append(e.getSalary()).append(";")
-                        .append(e.getExperience());
-
-
-                if (e instanceof ContractEmployee) {
-                    sb.append(";").append(((ContractEmployee) e).getContractDuration());
-                } else if (e instanceof FullTimeEmployee) {
-                    sb.append(";").append(((FullTimeEmployee) e).getBonus());
-                } else if (e instanceof InternEmployee) {
-                    sb.append(";").append(((InternEmployee) e).getMentorName());
-                } else if (e instanceof FreelanceEmployee) {
-                    sb.append(";").append(((FreelanceEmployee) e).getHourlyRate());
-                }
-                writer.println(sb.toString());
-            }
-            System.out.println("Дані успішно збережено у " + FILE_NAME);
+    private static void saveToJson() {
+        // Создаем Gson с "красивым" выводом
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(FILE_NAME)) {
+            gson.toJson(list, writer);
+            System.out.println("Дані збережено в JSON!");
         } catch (IOException e) {
-            System.out.println("Помилка при збереженні: " + e.getMessage());
+            System.out.println("Помилка запису: " + e.getMessage());
         }
     }
 
-    private static void loadFromFile() {
+    private static void loadFromJson() {
         File file = new File(FILE_NAME);
         if (!file.exists()) return;
 
-        try (Scanner fileScanner = new Scanner(file)) {
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                if (line.trim().isEmpty()) continue;
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(FILE_NAME)) {
+            Type listType = new TypeToken<ArrayList<Employee>>(){}.getType();
+            ArrayList<Employee> loadedList = gson.fromJson(reader, listType);
 
-                String[] parts = line.split(";");
-                String type = parts[0];
-                String name = parts[1];
-                Position pos = Position.valueOf(parts[2]);
-                double sal = Double.parseDouble(parts[3]);
-                int exp = Integer.parseInt(parts[4]);
-
-                switch (type) {
-                    case "Employee":
-                        list.add(new Employee(name, pos, sal, exp));
-                        break;
-                    case "ContractEmployee":
-                        int dur = Integer.parseInt(parts[5]);
-                        list.add(new ContractEmployee(name, pos, sal, exp, dur));
-                        break;
-                    case "FullTimeEmployee":
-                        double bonus = Double.parseDouble(parts[5]);
-                        list.add(new FullTimeEmployee(name, pos, sal, exp, bonus));
-                        break;
-                    case "InternEmployee":
-                        String mentor = parts[5];
-                        list.add(new InternEmployee(name, pos, sal, exp, mentor));
-                        break;
-                    case "FreelanceEmployee":
-                        double rate = Double.parseDouble(parts[5]);
-                        list.add(new FreelanceEmployee(name, pos, sal, exp, rate));
-                        break;
-                }
+            if (loadedList != null) {
+                list = loadedList;
+                System.out.println("Завантажено об'єктів: " + list.size());
             }
-            System.out.println("Дані завантажено з файлу. Кількість: " + list.size());
         } catch (Exception e) {
-            System.out.println("Помилка при зчитуванні файлу (можливо, файл пошкоджений).");
+            System.out.println("Помилка читання JSON: " + e.getMessage());
         }
     }
+
     private static void addNewEmployee() {
         System.out.println("\n--- Оберіть тип співробітника ---");
         System.out.println("1. Звичайний");

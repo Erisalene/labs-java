@@ -5,6 +5,7 @@ public class FreelanceEmployee extends Employee {
 
     public FreelanceEmployee(String name, Position position, double salary, int experience, double hourlyRate) {
         super(name, position, salary, experience); // salary тут может быть как базовый фикс
+        this.classType = "FreelanceEmployee";
         this.hourlyRate = hourlyRate;
     }
     public double getHourlyRate() {

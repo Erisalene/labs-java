@@ -7,8 +7,13 @@ public class Employee {
     protected double salary;
     protected int experience;
     protected Position position;
+    protected String classType;
 
+    public Employee() {
+        this.classType = "Employee";
+    }
     public Employee(String name, Position position, double salary, int experience) {
+        this();
         setName(name);
         this.position = position;
         setSalary(salary);

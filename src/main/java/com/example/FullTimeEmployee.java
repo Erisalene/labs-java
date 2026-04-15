@@ -6,6 +6,7 @@ public class FullTimeEmployee extends Employee {
 
     public FullTimeEmployee(String name, Position position, double salary, int experience, double bonus) {
         super(name, position, salary, experience);
+        this.classType = "FullTimeEmployee";
         this.bonus = bonus;
     }
     public double getBonus() {
